@@ -10,6 +10,7 @@ if __name__ == "__main__":
     cipher_b64 = "".join(cipher_b64)
 
     ciphertext = b64_to_bytes(cipher_b64)
+    
     key = b'YELLOW SUBMARINE'
     cipher = AES.new(key, AES.MODE_ECB)
     plaintext = cipher.decrypt(ciphertext)
