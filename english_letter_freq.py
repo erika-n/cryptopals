@@ -1,5 +1,5 @@
 
-
+# lower is better/closer to english
 def lf_score(text):
     letter_freqs = {
         "e":0.12702,

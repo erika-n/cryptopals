@@ -11,6 +11,10 @@ def pad(byte_arr, block_len):
     padding = bytes([pad_len]*pad_len)
     return byte_arr + padding
 
+def unpad(padded_text):
+    pad_len = padded_text[-1]
+    return padded_text[:-pad_len]
+
 def random_bytes(bytes_size):
     arr = []
     for i in range(bytes_size):
@@ -30,6 +34,12 @@ def encrypt_ECB_with_key(text_bytes, key):
     padded = pad(text_bytes, 16)
     cipher = AES.new(key, AES.MODE_ECB)
     ciphertext = cipher.encrypt(padded)
+    return ciphertext
+
+def decrypt_ECB_with_key(ciphertext, key):
+    cipher = AES.new(key, AES.MODE_ECB)
+    ciphertext = cipher.decrypt(ciphertext)
+    ciphertext = unpad(ciphertext)
     return ciphertext
 
 def encrypt_ECB_randomized(text_bytes):
